@@ -138,7 +138,25 @@ public:
     }
     return res;
   }
+
+  int centrosRotados(){
+    int num=0;
+    for(int i=0; i<4; i++){
+      if(center[i]!=0)
+        num++;
+    }
+    return num;
+  }
+  int aristasMalas(){
+    int num=0;
+    for(int i=0; i<6;i++){
+      if(edges[i].num!=i)
+        num++;
+    }
+    return num;
+  }
 };
+
 
 void mostrar(vector<string> s){
   for(int i=0; i<s.size(); i++)
@@ -164,6 +182,10 @@ void resuelve(vector<string> mov, Pyra p, int tam){
   if(tam==0){
     if(p.resuelto())    mostrar(mov);
   }
+  else if(tam==1 and p.centrosRotados()>1){}
+  else if(tam==1 and p.aristasMalas()>3){}
+  else if(tam==2 and p.aristasMalas()==6){}
+  else if(tam==2 and p.centrosRotados()>2){}
   else{
     Pyra aux=p;
     vector <string> MovAux;
@@ -195,7 +217,7 @@ int main(){
   p1.Up();
   p1.Rp();
 
-  for(int i=1; i<15; i++){
+  for(int i=1; i<11; i++){
     cout << "Con " << i << " movimientos" << endl;
     cout << "_________________" << endl;
     resuelve(movs,p1,i);
