@@ -217,7 +217,7 @@ int main(){
   p1.Up();
   p1.Rp();
 
-  for(int i=1; i<11; i++){
+  for(int i=1; i<15; i++){
     cout << "Con " << i << " movimientos" << endl;
     cout << "_________________" << endl;
     resuelve(movs,p1,i);
