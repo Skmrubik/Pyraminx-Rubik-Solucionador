@@ -17,16 +17,12 @@ private:
 
 public:
   Pyra(){
+    char letras[]={'F','F','D','A','A','A'};
     for(int i=0; i<6;i++){
       edges[i].num=i;
+      edges[i].cara=letras[i];
       if(i<4)   center[i]=0;
     }
-    edges[0].cara='F';
-    edges[1].cara='F';
-    edges[2].cara='D';
-    edges[3].cara='A';
-    edges[4].cara='A';
-    edges[5].cara='A';
   }
 
   void EdgesCaras(const int ent[], const char a,const char b,const char c, bool const prima){
@@ -149,8 +145,9 @@ public:
   }
   int aristasMalas(){
     int num=0;
+    char letras[]={'F','F','D','A','A','A'};
     for(int i=0; i<6;i++){
-      if(edges[i].num!=i)
+      if(edges[i].num!=i or edges[i].cara!=letras[i])
         num++;
     }
     return num;
@@ -217,7 +214,8 @@ int main(){
   p1.Up();
   p1.Rp();
 
-  for(int i=1; i<15; i++){
+  for(int i=1; i<12; i++){
+    cout << "_________________" << endl;
     cout << "Con " << i << " movimientos" << endl;
     cout << "_________________" << endl;
     resuelve(movs,p1,i);
