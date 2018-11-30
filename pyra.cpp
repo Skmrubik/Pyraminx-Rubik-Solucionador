@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 struct arista{
@@ -201,18 +202,40 @@ void resuelve(vector<string> mov, Pyra p, int tam){
   }
 }
 
+void mezcla(Pyra &p, string scramble){
+  vector <string> vec;
+  string aux;
+  scramble+=' ';
+  for (int i=0; i<scramble.size(); i++){
+    if(scramble[i]!=' '){
+      aux+=scramble[i];
+    }
+    else{
+      vec.push_back(aux);
+      aux.clear();
+    }
+  }
+
+  for(int i=0; i<vec.size();i++){
+    if(vec[i]=="L")         p.L();
+    else if(vec[i]=="L'")   p.Lp();
+    else if(vec[i]=="R")    p.R();
+    else if(vec[i]=="R'")   p.Rp();
+    else if(vec[i]=="U")    p.U();
+    else if(vec[i]=="U'")   p.Up();
+    else if(vec[i]=="B")    p.B();
+    else if(vec[i]=="B'")   p.Bp();
+  }
+}
+
 int main(){
   vector <string> movs;
   Pyra p1;
-//Scramble
-  p1.L();
-  p1.Rp();
-  p1.Lp();
-  p1.R();
-  p1.U();
-  p1.R();
-  p1.Up();
-  p1.Rp();
+
+  string scramble;
+  cout <<"Introduce la mezcla: " << endl;
+  getline(cin, scramble);
+  mezcla(p1,scramble);
 
   for(int i=1; i<12; i++){
     cout << "_________________" << endl;
